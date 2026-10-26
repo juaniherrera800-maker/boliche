@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#100e16" />
+    <title>NOCTA | Carta digital</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --fondo: #100e16;
+        --panel: #191622;
+        --borde: #33263e;
+        --texto: #f8f4fc;
+        --suave: #b9afc4;
+        --acento: #e65cff;
+        --segundo: #a58aff;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--fondo);
+        color: var(--texto);
+        font-family: "DM Sans", sans-serif;
+        line-height: 1.5;
+      }
+
+      .contenedor {
+        width: min(1100px, 92%);
+        margin: auto;
+      }
+
+      /* PORTADA */
+
+      header {
+        position: relative;
+        overflow: hidden;
+        padding: 34px 0 30px;
+        border-bottom: 1px solid var(--borde);
+        background:
+          radial-gradient(ellipse at 80% 20%, #532365 0%, transparent 38%),
+          radial-gradient(ellipse at 10% 100%, #26194b 0%, transparent 42%),
+          var(--fondo);
+      }
+
+      .cabecera {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .marca {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: clamp(48px, 8vw, 78px);
+        font-weight: 800;
+        letter-spacing: 3px;
+        line-height: 0.95;
+      }
+
+      .marca span {
+        color: var(--acento);
+      }
+
+      .submarca {
+        color: var(--suave);
+        font-size: 11px;
+        letter-spacing: 4px;
+        margin-top: 12px;
+        text-transform: uppercase;
+      }
+
+      .sello {
+        border: 1px solid var(--acento);
+        color: var(--acento);
+        padding: 9px 14px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        transform: rotate(3deg);
+        white-space: nowrap;
+      }
+
+      .frase {
+        color: var(--suave);
+        margin-top: 27px;
+        font-size: 14px;
+      }
+
+      .frase strong {
+        color: var(--texto);
+      }
+
+      /* SECCIONES */
+
+      main {
+        padding: 30px 0 40px;
+      }
+
+      .seccion {
+        margin-bottom: 34px;
+      }
+
+      .titulo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 17px;
+      }
+
+      .titulo h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 31px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .titulo::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: linear-gradient(90deg, var(--acento), transparent);
+      }
+
+      .numero {
+        color: var(--acento);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      /* PROMOCIONES */
+
+      .promos {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .promo {
+        position: relative;
+        min-height: 255px;
+        border: 1px solid var(--borde);
+        overflow: hidden;
+        background: var(--panel);
+      }
+
+      .promo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.74;
+      }
+
+      .promo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(12, 9, 18, 0.98) 0%,
+          rgba(12, 9, 18, 0.65) 42%,
+          rgba(12, 9, 18, 0.04) 100%
+        );
+      }
+
+      .promo-contenido {
+        position: absolute;
+        z-index: 1;
+        inset: auto 16px 17px;
+      }
+
+      .etiqueta {
+        display: inline-block;
+        background: var(--acento);
+        color: #170d1c;
+        padding: 4px 9px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        margin-bottom: 9px;
+      }
+
+      .promo h3 {
+        font-size: 20px;
+        line-height: 1.2;
+        margin-bottom: 5px;
+      }
+
+      .promo p {
+        color: #d2c8da;
+        font-size: 12px;
+      }
+
+      .precio-promo {
+        color: #f5b7ff;
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        margin-top: 5px;
+      }
+
+      /* LISTADO DE PRODUCTOS */
+
+      .rejilla {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      .bloque {
+        border: 1px solid var(--borde);
+        background: linear-gradient(145deg, #191622, #131019);
+        padding: 18px;
+        min-width: 0;
+      }
+
+      .bloque-titulo {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+        border-bottom: 1px solid var(--borde);
+        padding-bottom: 12px;
+        margin-bottom: 5px;
+      }
+
+      .bloque-titulo h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 25px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .bloque-titulo span {
+        color: var(--acento);
+        font-size: 10px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+      }
+
+      .producto {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 0;
+        border-bottom: 1px solid #29232f;
+      }
+
+      .producto:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .producto-info {
+        min-width: 0;
+      }
+
+      .producto h4 {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .producto p {
+        color: var(--suave);
+        font-size: 11px;
+        margin-top: 3px;
+      }
+
+      .precio {
+        color: var(--acento);
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      /* BOTELLAS */
+
+      .botellas {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        align-items: center;
+        border: 1px solid var(--borde);
+        background:
+          radial-gradient(ellipse at right, #3d1e4c 0%, transparent 55%),
+          var(--panel);
+        padding: 18px;
+      }
+
+      .botellas img {
+        width: 100%;
+        height: 215px;
+        object-fit: cover;
+      }
+
+      .botellas h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 32px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .botellas p {
+        color: var(--suave);
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+
+      .botellas strong {
+        color: var(--acento);
+        font-size: 12px;
+        letter-spacing: 1px;
+      }
+
+      /* SIN ALCOHOL */
+
+      .sin-alcohol {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 22px;
+        border: 1px solid var(--borde);
+        background: var(--panel);
+        padding: 18px;
+      }
+
+      .sin-alcohol .titulo {
+        grid-column: 1 / -1;
+      }
+
+      /* PIE */
+
+      footer {
+        border-top: 1px solid var(--borde);
+        padding: 24px 0;
+        text-align: center;
+      }
+
+      footer h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 23px;
+        letter-spacing: 2px;
+      }
+
+      footer p {
+        color: var(--suave);
+        font-size: 11px;
+        margin-top: 6px;
+      }
+
+      .pie-acento {
+        color: var(--acento);
+      }
+
+      /* CELULARES */
+
+      @media (max-width: 650px) {
+        header {
+          padding: 27px 0 23px;
+        }
+
+        .marca {
+          font-size: 55px;
+        }
+
+        .sello {
+          font-size: 9px;
+          padding: 7px 9px;
+        }
+
+        .submarca {
+          font-size: 9px;
+          letter-spacing: 2px;
+        }
+
+        main {
+          padding-top: 23px;
+        }
+
+        .promos {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+
+        .promo {
+          min-height: 220px;
+        }
+
+        .promo:last-child {
+          grid-column: 1 / -1;
+          min-height: 185px;
+        }
+
+        .promo-contenido {
+          inset: auto 12px 12px;
+        }
+
+        .promo h3 {
+          font-size: 17px;
+        }
+
+        .precio-promo {
+          font-size: 27px;
+        }
+
+        .rejilla {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .bloque {
+          padding: 15px;
+        }
+
+        .botellas {
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+
+        .botellas img {
+          height: 190px;
+        }
+
+        .sin-alcohol {
+          grid-template-columns: 1fr;
+        }
+
+        .sin-alcohol .titulo {
+          grid-column: auto;
+        }
+      }
+
+      @media (max-width: 370px) {
+        .marca {
+          font-size: 46px;
+        }
+
+        .sello {
+          letter-spacing: 1px;
+        }
+
+        .promos {
+          grid-template-columns: 1fr;
+        }
+
+        .promo,
+        .promo:last-child {
+          grid-column: auto;
+          min-height: 220px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="contenedor">
+        <div class="cabecera">
+          <div>
+            <div class="marca">NOC<span>TA.</span></div>
+            <p class="submarca">TRAGOS · MÚSICA · NOCHES</p>
+          </div>
+
+          <div class="sello">CARTA DIGITAL</div>
+        </div>
+
+        <p class="frase">
+          Tu noche empieza acá. <strong>Elegí tu próximo trago.</strong>
+        </p>
+      </div>
+    </header>
+
+    <main class="contenedor">
+      <!-- PROMOCIONES -->
+
+      <section class="seccion">
+        <div class="titulo">
+          <span class="numero">01</span>
+          <h2>Promos de la noche</h2>
+        </div>
+
+        <div class="promos">
+          <article class="promo">
+            <img
+              src="https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=800&q=85"
+              alt="Gin tonic"
+            />
+            <div class="promo-contenido">
+              <span class="etiqueta">PROMO</span>
+              <h3>2 Gin Tonic</h3>
+              <p>Para arrancar la noche.</p>
+              <div class="precio-promo">$15.000</div>
+            </div>
+          </article>
+
+          <article class="promo">
+            <img
+              src="https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&w=800&q=85"
+              alt="Cervezas"
+            />
+            <div class="promo-contenido">
+              <span class="etiqueta">COMBO</span>
+              <h3>4 Cervezas</h3>
+              <p>La previa se comparte.</p>
+              <div class="precio-promo">$16.000</div>
+            </div>
+          </article>
+
+          <article class="promo">
+            <img
+              src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=800&q=85"
+              alt="Cóctel de la casa"
+            />
+            <div class="promo-contenido">
+              <span class="etiqueta">DESTACADO</span>
+              <h3>Combo de la casa</h3>
+              <p>2 tragos para compartir.</p>
+              <div class="precio-promo">$18.000</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- TRAGOS Y CERVEZAS -->
+
+      <section class="seccion">
+        <div class="titulo">
+          <span class="numero">02</span>
+          <h2>La carta</h2>
+        </div>
+
+        <div class="rejilla">
+          <article class="bloque">
+            <div class="bloque-titulo">
+              <h3>Tragos</h3>
+              <span>CLÁSICOS & MÁS</span>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Gin Tonic</h4>
+                <p>Gin, tónica y cítricos.</p>
+              </div>
+              <div class="precio">$8.500</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Fernet con cola</h4>
+                <p>El clásico de siempre.</p>
+              </div>
+              <div class="precio">$7.500</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Mojito</h4>
+                <p>Ron, lima y menta.</p>
+              </div>
+              <div class="precio">$8.000</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Sex on the Beach</h4>
+                <p>Vodka y frutas.</p>
+              </div>
+              <div class="precio">$8.500</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Negroni</h4>
+                <p>Gin, vermut y bitter.</p>
+              </div>
+              <div class="precio">$9.000</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Trago de la casa</h4>
+                <p>Una mezcla para descubrir.</p>
+              </div>
+              <div class="precio">$9.500</div>
+            </div>
+          </article>
+
+          <article class="bloque">
+            <div class="bloque-titulo">
+              <h3>Cervezas</h3>
+              <span>BIEN FRÍAS</span>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Cerveza rubia</h4>
+                <p>Lager clásica · 473 ml.</p>
+              </div>
+              <div class="precio">$4.500</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Cerveza IPA</h4>
+                <p>Artesanal · 473 ml.</p>
+              </div>
+              <div class="precio">$5.500</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Cerveza roja</h4>
+                <p>Consultar disponibilidad.</p>
+              </div>
+              <div class="precio">$5.000</div>
+            </div>
+
+            <div class="bloque-titulo" style="margin-top: 25px">
+              <h3>Shots</h3>
+              <span>DE UNA</span>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Tequila</h4>
+                <p>Shot clásico.</p>
+              </div>
+              <div class="precio">$4.000</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Jägermeister</h4>
+                <p>El infaltable.</p>
+              </div>
+              <div class="precio">$4.500</div>
+            </div>
+
+            <div class="producto">
+              <div class="producto-info">
+                <h4>Shot de la casa</h4>
+                <p>Consultar sabor.</p>
+              </div>
+              <div class="precio">$3.500</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BOTELLAS -->
+
+      <section class="seccion">
+        <div class="titulo">
+          <span class="numero">03</span>
+          <h2>Botellas & combos</h2>
+        </div>
+
+        <article class="botellas">
+          <img
+            src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1000&q=85"
+            alt="Bebidas para compartir"
+            loading="lazy"
+          />
+
+          <div>
+            <h3>La noche es tuya.</h3>
+            <p>
+              Botellas, bebidas premium y opciones para compartir con amigos.
+              Consultá las marcas y promociones disponibles.
+            </p>
+            <strong>PRECIOS SEGÚN MARCA Y PRESENTACIÓN</strong>
+          </div>
+        </article>
+      </section>
+
+      <!-- SIN ALCOHOL -->
+
+      <section class="seccion sin-alcohol">
+        <div class="titulo">
+          <span class="numero">04</span>
+          <h2>Sin alcohol</h2>
+        </div>
+
+        <div class="producto">
+          <div class="producto-info">
+            <h4>Agua mineral</h4>
+            <p>Con o sin gas.</p>
+          </div>
+          <div class="precio">$2.500</div>
+        </div>
+
+        <div class="producto">
+          <div class="producto-info">
+            <h4>Gaseosa</h4>
+            <p>Variedades clásicas.</p>
+          </div>
+          <div class="precio">$3.000</div>
+        </div>
+
+        <div class="producto">
+          <div class="producto-info">
+            <h4>Limonada</h4>
+            <p>Limón y menta.</p>
+          </div>
+          <div class="precio">$4.000</div>
+        </div>
+
+        <div class="producto">
+          <div class="producto-info">
+            <h4>Mocktail cítrico</h4>
+            <p>Frutas y soda.</p>
+          </div>
+          <div class="precio">$5.000</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="contenedor">
+        <h3>NOCTA<span class="pie-acento">.</span></h3>
+        <p>Buenas bebidas. Buena música. Grandes noches.</p>
+        <p>
+          Precios e imágenes ilustrativos · Consumo de alcohol exclusivo para
+          mayores de 18 años.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
